@@ -19,5 +19,5 @@ A modern-looking calculator built using **Java Swing**. Supports basic arithmeti
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/java-calculator.git
+   git clone https://github.com/elfbzkrtt07/Calculator
    cd java-calculator
