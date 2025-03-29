@@ -1,6 +1,6 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
 
 /**
  * A simple GUI-based calculator using Java Swing.
@@ -9,11 +9,13 @@ import java.awt.event.*;
  * The calculator has a display and a grid of buttons that the user can click to perform calculations.
  * 
  * @author Elif Bozkurt
+ * @author Metehan Kutay
  */
 public class Calculator extends JFrame implements ActionListener {
     private JTextField display;
     private String input = "";
-    private double num1 = 0, num2 = 0;
+    private double num1 = 0;
+    private Double num2 = null;
     private char operator = ' ';
 
     /**
@@ -77,7 +79,8 @@ public class Calculator extends JFrame implements ActionListener {
         switch (operation) {
             case "C":
                 input = "";
-                num1 = num2 = 0;
+                num1 = 0;
+                num2 = null;
                 operator = ' ';
                 break;
             case "CE":
@@ -106,12 +109,17 @@ public class Calculator extends JFrame implements ActionListener {
                 input = "";
                 break;
             case "=":
-                num2 = Double.parseDouble(input);
+                if (num2 == null) {
+                    num2 = Double.parseDouble(input);
+                }
                 switch (operator) {
-                    case '+': input = String.valueOf(num1 + num2); break;
-                    case '−': input = String.valueOf(num1 - num2); break;
-                    case '×': input = String.valueOf(num1 * num2); break;
-                    case '÷': input = num2 != 0 ? String.valueOf(num1 / num2) : "Error"; break;
+                    case '+': num1 += num2; break;
+                    case '−': num1 -= num2; break;
+                    case '×': num1 *= num2; break;
+                    case '÷': input = num2 != 0 ? String.valueOf(num1 /= num2) : "Error"; break;
+                }
+                if (!input.equals("Error")) {
+                    input = String.valueOf(num1);
                 }
                 break;
             case "x²":
