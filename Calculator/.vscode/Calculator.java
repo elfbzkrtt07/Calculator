@@ -110,7 +110,11 @@ public class Calculator extends JFrame implements ActionListener {
                 break;
             case "=":
                 if (num2 == null) {
-                    num2 = Double.parseDouble(input);
+                    try {
+                        num2 = Double.parseDouble(input);
+                    } catch (Exception ex) {
+                        break;
+                    }
                 }
                 switch (operator) {
                     case '+': num1 += num2; break;
